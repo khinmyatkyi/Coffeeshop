@@ -9,8 +9,8 @@ To create Virtual Environments
 Activate Virtual Environment
 ===============================
 - enter following commend in terminal 
-      -In Window OS -> .venv/scripts/activate
-      -(or) In Max OS -> source .venv/bin/activate
+-In Window OS -> .venv/scripts/activate
+-(or) In Max OS -> source .venv/bin/activate
 
 Install the Django code
 =====================
