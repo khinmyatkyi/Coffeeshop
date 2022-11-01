@@ -1,0 +1,97 @@
+{% extends 'generic/base.html' %}
+
+{% block content %}
+<div class="card">
+    <div class="card-body"> 
+          <div class="row mb-3" style="margin-left:10px;">
+            <div class="col-3">
+                <h5>Qty</h5>
+            </div>
+            <div class="col-5 text-left" > 
+                <h5>Item</h5>
+            </div>
+            <div class="col-4">
+                <h5>Price</h5>
+            </div>
+          </div>                  
+              {% for l in list %}
+              <div class="row mb-3" style="margin-left:10px;">
+                <div class="col-3">
+                    <a href="{% url 'increaseQty' l.menu_id.id %}"><span class="badge text-bg-secondary" style="width: 1.6rem;height:1.6rem;">+</span></a>
+                    <span style="margin-left:10px;margin-right:10px;">{{l.qty}}</span>
+                    <a href="{% url 'decreaseQty' l.menu_id.id %}"><span class="badge text-bg-secondary" style="width: 1.6rem;height:1.6rem;">-</span></a>
+                </div>
+                <div class="col-1 text-left" > 
+                    {% load static %}
+                    <img src="{{l.menu_id.image.url}}" style="width: 2rem; height: 2rem; border-radius:50%;">        
+                </div>
+                <div class="col-4">
+                    <h6>{{l.menu_id.name}}</h6>
+                </div>
+                <div class="col-4">
+                    <h6>{{l.menu_id.price}}</h6>
+                </div>
+              </div>
+              {% endfor %}
+              <div class="row">
+                <div class="col-3">
+                </div>
+                <div class="col-7">
+                    ---------------------------------------------------------------------------
+                </div>
+                <div class="col-2">
+                </div>
+                
+              </div>
+              <div class="row">
+                <div class="col-6 text-end">
+                    <b>Total</b>
+                </div>
+                <div class="col-2">
+                </div>
+                <div class="col-4 mb-3">
+                    {% load my_filters %}
+                    <b>{{list|sumTotal}}</b>
+                </div>
+              </div>
+              <form method="post" >
+                {% csrf_token %} 
+                <div class="row mt-5">
+                  <div class="col-md-6" style="margin-left:10px;width:350px;">
+                    <label class="form-label">Customer Name</label>
+                    <input type="text" name="customername" class="form-control" id="inputEmail4">
+                  </div>
+                  <div class="col-md-6" style="margin-right:10px;width:350px;">
+                    <label class="form-label">Phone</label>
+                    <input type="text" class="form-control" name="phone" id="phone" placeholder="+959XXXXXXXX">
+                  </div>
+                </div>                
+                <div class="mt-3">
+                    <label onclick="show_address_input()" class="btn btn-link" for="commented_by_type2">
+                        Please Fill Address
+                    </label>
+                    <input type="text" style="margin-left:10px;width:678px;" class="form-control" id="address" name="address" placeholder="" required>
+                </div>
+                <div class="mb-3 mt-5" style="margin-left:10px;">
+                    <button type="submit" class="btn btn-primary">Checkout Order</button>
+                    <a href="{% url 'home' %}" class="btn btn-light" style="margin-left:5px;">Cancel</a>
+                </div>
+              </form>
+    </div>
+</div>
+
+{% endblock  %}
+
+{% block javascript %}
+<script type="text/javascript">
+    function show_address_input() {
+        const address = document.getElementById("address");
+        let hidden = address.getAttribute("hidden");
+        if(hidden){
+            address.removeAttribute("hidden");
+        }else{
+            address.setAttribute("hidden", "hidden");
+        }  
+    } 
+</script>
+{% endblock javascript %}

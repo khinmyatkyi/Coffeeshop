@@ -1,0 +1,8 @@
+<input class="form-control me-2" style="width:200px;" onkeydown="on_search(event)" type="search" placeholder="Search by Item Name" aria-label="Search">
+<script type="text/javascript">
+    function on_search(e) {
+        if(e.keyCode == 13){
+            window.location.href = "{% url 'home'%}?q=" + e.target.value;
+        }
+    }
+</script>

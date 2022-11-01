@@ -1,0 +1,54 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <style>
+      header#banner{
+        /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#1e5799+0,207cca+37,207cca+37,2989d8+65,7db9e8+100 */
+        background: #1e5799; /* Old browsers */
+        background: -moz-linear-gradient(top, #1e5799 0%, #207cca 37%, #207cca 37%, #2989d8 65%, #7db9e8 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(top, #1e5799 0%,#207cca 37%,#207cca 37%,#2989d8 65%,#7db9e8 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to bottom, #1e5799 0%,#207cca 37%,#207cca 37%,#2989d8 65%,#7db9e8 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#7db9e8',GradientType=0 ); /* IE6-9 */  
+        color:white;
+    }
+    </style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Coffee Shop</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link href="{% static 'frontend/css/style.css' %}" rel="stylesheet" />
+  </head>
+  <body class="bg-light">
+    <div class="container mt-1 p-3 bg-white border shadow">
+      <header id="banner" class="p-lg-5 mb-3">  
+        <h1 class="text-white">
+          Test Project
+        </h1>
+      </header>
+      <div class="row">
+        <div class="col-9 pt-3 border-end">
+          {% block content %}
+          {% endblock content %}
+        </div>
+        <div class="col-3">
+          <nav class="p-3">
+            <div class="p-3">
+              {% include 'fragment/search.html' %}
+            </div>
+            <div class="p-3">
+              {% include 'fragment/category.html' %}
+            </div>
+          </nav>
+        </div>
+      </div>
+      <footer class="p-5 border-top text-muted text-center small">
+        Copyright &copy; 2022, All right reserve
+      </footer>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    {% block javascript %}{% endblock javascript %}
+  </body>
+</html>

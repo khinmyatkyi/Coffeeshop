@@ -1,0 +1,33 @@
+<h6 class="fs-6 text-muted">Categories</h6>
+<div class="list-group list-group-flush" id="category_list">
+    <a href="{% url 'home'%}" class="list-group-item">All</a>
+</div>    
+<a href="{% url 'orderCart' %}" class="btn btn-secondary position-relative mt-4">
+    Cart
+    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+      {{list | length}}
+      <span class="visually-hidden">unread messages</span>
+    </span>
+</a>
+<script type="text/javascript">
+    async function load_category(){
+        const list= document.getElementById("category_list");
+        try{
+            let html = '';
+            const response = await fetch("{% url 'get_json_category' %}");
+            const data=await response.json();
+            data.forEach((cat) => {
+                const link = document.createElement("a");
+                link.setAttribute("class", "list-group-item");
+                link.href = "{% url 'home' %}?category=" + cat.pk;
+                link.innerHTML = cat?.fields?.name ?? 'Unknown';
+                list.append(link);
+            })
+        }catch(error){
+            alert(error);
+        }
+    }
+    window.addEventListener('load', (e) => {
+        load_category();
+    })
+</script>         
